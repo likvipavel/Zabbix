@@ -26,9 +26,9 @@ jobs:
     
     - name: Install Boto3
       run: |
-        apt update -y
+        sudo apt update -y
         python -m pip install boto3  botocore
-        apt install ansible -y
+        sudo apt install ansible -y
         ansible --version
         
         
