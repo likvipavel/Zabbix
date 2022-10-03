@@ -26,8 +26,11 @@ jobs:
     
     - name: Install Boto3
       run: |
-        python -m pip install boto3
-        pip3 --version
+        apt update -y
+        python -m pip install boto3  botocore
+        apt install ansible -y
+        ansible --version
+        
         
     #- name: Execute Ansible Playbook
      # uses: saubermacherag/ansible-playbook-docker-action@v1.4
