@@ -6,5 +6,5 @@ keyed_groups:
   - key: tags.task
 filters:
   instance-state-name : running
-compose:s
+compose:
   ansible_host: public_ip_address
