@@ -1,4 +1,4 @@
-name: Manual workflow
+name: Automatic Installation
 
 on:
   push:
@@ -24,13 +24,16 @@ jobs:
         aws-secret-access-key: ${{ secrets.MY_AWS_SECRET_ACCESS_KEY }}
         aws-region: us-east-1
     
-    - name: Install Boto3
+    - name: Install packages
       run: |
         sudo apt update -y
         python -m pip install boto3  botocore
         sudo apt install ansible -y
         ansible --version
         
+    - name: Run ansible playbook
+      run: |
+        ansible all -i inventory_aws_ec2.yml -m ping
         
     #- name: Execute Ansible Playbook
      # uses: saubermacherag/ansible-playbook-docker-action@v1.4
