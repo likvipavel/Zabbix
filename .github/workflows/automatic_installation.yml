@@ -32,8 +32,8 @@ jobs:
         sudo apt install ansible -y
         ansible --version
         echo "{{ env.PRIVATE_KEY_FILE }}" > id_rsa
-    
-    - name: Run ansible playbook
-      run: |
         ansible all -i inventory_aws_ec2.yml --private-key id_rsa -m ping
+  #  - name: Run ansible playbook
+  #    run: |
+   #     ansible all -i inventory_aws_ec2.yml --private-key id_rsa -m ping
   
