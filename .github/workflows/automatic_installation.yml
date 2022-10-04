@@ -30,9 +30,9 @@ jobs:
         python -m pip install boto3  botocore
         sudo apt install ansible -y
         ansible --version
-        echo ${{ secrets.MY_SSH_SECRET_KEY }} > ~/.ssh/id_rsa
+        echo ${{ secrets.MY_SSH_SECRET_KEY }} > id_rsa
         
     - name: Run ansible playbook
       run: |
-        ansible all -i inventory_aws_ec2.yml -m ping
+        ansible all -i inventory_aws_ec2.yml --private-key ${{ secrets.MY_SSH_SECRET_KEY }}  -m ping
   
