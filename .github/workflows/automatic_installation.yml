@@ -30,7 +30,7 @@ jobs:
         python -m pip install boto3  botocore
         sudo apt install ansible -y
         ansible --version
-        echo ${{ MY_SSH_SECRET_KEY }} > ~/.ssh/id_rsa
+        echo ${{ secrets.MY_SSH_SECRET_KEY }} > ~/.ssh/id_rsa
         
     - name: Run ansible playbook
       run: |
