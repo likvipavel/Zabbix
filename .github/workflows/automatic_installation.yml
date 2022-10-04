@@ -30,24 +30,9 @@ jobs:
         python -m pip install boto3  botocore
         sudo apt install ansible -y
         ansible --version
+        echo ${{ MY_SSH_SECRET_KEY }} > ~/.ssh/id_rsa
         
     - name: Run ansible playbook
       run: |
         ansible all -i inventory_aws_ec2.yml -m ping
-        
-    #- name: Execute Ansible Playbook
-     # uses: saubermacherag/ansible-playbook-docker-action@v1.4
-     # with:
-      #  playbookName: test.yml
-       # inventoryFile: ec2.py
-   
-
-
-
-   # - name: Ansible CLI
-      # You may pin to the exact commit or the version.
-      # uses: tomasnorre/ansible-cli-client@bd08e0a19b445d0a2bc42877fdd7a2e9d632e8e3
-    #  uses: tomasnorre/ansible-cli-client@0.0.2
-     # with:
-        # Command to execute
-       # command: ansible -i ec2.py -m ping
+  
