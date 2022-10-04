@@ -8,7 +8,8 @@ jobs:
   test:
     name: test ansible environment
     runs-on: ubuntu-latest
- 
+    env:
+      PRIVATE_KEY_FILE : ${{ secrets.MY_SSH_SECRET_KEY }}
     defaults:
       run:
         working-directory: .
@@ -33,5 +34,5 @@ jobs:
    
     - name: Run ansible playbook
       run: |
-        ansible all -i inventory_aws_ec2.yml --private-key ${{ secrets.MY_SSH_SECRET_KEY }}  -m ping
+        ansible all -i inventory_aws_ec2.yml -m ping
   
