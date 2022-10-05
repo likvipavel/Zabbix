@@ -1,8 +1,9 @@
 #!/bin/bash
 
 #MANDATORY_ARGUMENTS: $1 - OS (ubuntu or rhel), $2 - db_password
-if [ -z $1 ] & [ -z $2 ]; then 
+
 #Let's start by adding the Zabbix 6.0 repository to our system.
+if [ -z $1 ] & [ -z $2 ]; then
 #---For RHEL-based systems:
 if [ $1 == "rhel" ]; then
     sudo rpm -Uvh https://repo.zabbix.com/zabbix/6.0/rhel/8/x86_64/zabbix-release-6.0-1.el8.noarch.rpm
@@ -65,7 +66,7 @@ SQL_QUERY
 
     #vim /etc/zabbix/zabbix_server.conf
 #---Now, make sure the following lines in the file match your database name, database user username, and database user password:
-    sed -i '$a DBPassword='${2}''  /etc/zabbix/zabbix_server.conf
+    sudo sed -i '$a DBPassword='${2}''  /etc/zabbix/zabbix_server.conf
 #---Before starting the Zabbix server, you should configure SELinux or AppArmor to allow the use of the Zabbix server. If this is a test machine, you can use a permissive stance for SELinux or disable AppArmor, but it is recommended to not do this in production.
     
 #All done; we are now ready to start our Zabbix server:
@@ -100,6 +101,7 @@ elif [ $1 == "ubuntu" ]; then
     sudo systemctl enable apache2
     sudo systemctl restart zabbix-server apache2
     fi
+
 #We should now be able to navigate to our Zabbix frontend without any issues and start the final steps to set up the Zabbix frontend.
 #---Let's go to our browser and navigate to our server's IP. It should look like this:
 #---http://<your_server_ip>/zabbix 
