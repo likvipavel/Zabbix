@@ -3,7 +3,7 @@
 #MANDATORY_ARGUMENTS: $1 - OS (ubuntu or rhel), $2 - db_password
 
 #Let's start by adding the Zabbix 6.0 repository to our system.
-if [ -z $1 ] & [ -z $2 ]; then
+if [ -n $1 ] & [ -n $2 ]; then
 #---For RHEL-based systems:
 if [ $1 == "rhel" ]; then
     sudo rpm -Uvh https://repo.zabbix.com/zabbix/6.0/rhel/8/x86_64/zabbix-release-6.0-1.el8.noarch.rpm
@@ -34,7 +34,15 @@ elif [ $1 == "ubuntu" ]; then
 fi
 
 #After installing MariaDB, make sure to secure your installation with the following command:
-    sudo /usr/bin/mariadb-secure-installation
+    sudo /usr/bin/mariadb-secure-installation <<EOF
+y
+'${2}'
+'${2}'
+y
+y
+y
+y
+EOF
 #---Make sure to answer the questions with yes (Y) and configure a root password that's secure.
 #---Run through the secure installation setup and make sure to save your password somewhere. It's highly recommended to use a password vault.
 
