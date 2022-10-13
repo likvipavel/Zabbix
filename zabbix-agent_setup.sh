@@ -22,7 +22,8 @@ elif [ $1 == "ubuntu" ]; then
 fi
     sudo systemctl restart zabbix-agent2
     sudo systemctl enable zabbix-agent2 
-
+else echo 'You need to type one arguments'
+fi
 #Congratulations, Zabbix agent 2 is now installed and ready to use.
 
 #TIPS: Using a Zabbix agent in active mode

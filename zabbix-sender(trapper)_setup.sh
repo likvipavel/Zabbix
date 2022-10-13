@@ -3,9 +3,12 @@
 
 #If we go to the CLI of our monitored server, we can now execute the following to install Zabbix sender:
 #---RHEL-based systems:
+if [ $1 == "rhel" ]; then
     sudo yum -y install zabbix-sender
 #---Ubuntu systems:
+elif [ $1 == "ubuntu" ]; then
     apt install zabbix-sender
+fi
 
 #After installation, we can use Zabbix sender to send some information to our server:
     zabbix_sender -z 10.16.16.152 -s "my-agent-name" -k trap -o "Let's test this trapper"

@@ -11,6 +11,7 @@ if [ $1 == "rhel" ]; then
 #---For Ubuntu systems:
 elif [ $1 == "ubuntu" ]; then
     sudo apt install snmp snmpd libsnmp-dev -y
+fi
 
 #Now, let's create the new SNMPv3 user that we will use to monitor our host. Please note that we'll be using insecure passwords, but make sure to use secure passwords for your production environments. Issue the following command:
     sudo systemctl stop snmpd
@@ -29,5 +30,5 @@ elif [ $1 == "ubuntu" ]; then
 
 #This is all we need to do on the Linux host side; we can now go to the Zabbix frontend to configure our host.
 #Go to Configuration | Hosts in your Zabbix frontend and click Create host in the top-right corner.
-else echo 'You need to type two arguments'
+else echo 'You need to type three arguments'
 fi
