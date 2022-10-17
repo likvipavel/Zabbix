@@ -4,7 +4,7 @@
 #Monitoring via SNMP polling is easy and very powerful. We will start by configuring SNMPv3 on our monitored Linux host:
 
 #Let's start by issuing the following commands to install SNMP on our host.
-if [ -z $1 ] & [ -z $2 ] & [ -z $3 ]; then 
+if [ -n $1 ] & [ -n $2 ] & [ -n $3 ]; then 
 #---For RHEL-based systems:
 if [ $1 == "rhel" ]; then
     sudo yum install net-snmp net-snmp-utils -y
